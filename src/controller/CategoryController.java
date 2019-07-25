@@ -26,7 +26,7 @@ public class CategoryController {
 	@RequestMapping("listCategory")
 	public List<Category> listCategory() {
 		ModelAndView mav = new ModelAndView();
-		PageHelper.offsetPage(0,5);
+		PageHelper.offsetPage(0,6);
 		List<Category> cs = categoryService.list();
 
 		// 放入转发参数
