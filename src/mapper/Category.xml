@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CategoryMapper">
+	<insert id="add" parameterType="Category">
+		insert into category_ ( name ) values (#{name})
+	</insert>
+
+	<insert id="addList">
+		insert into category_ ( name ) values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.name})
+		</foreach>
+
+	</insert>
+
+	<delete id="delete" parameterType="Category">
+		delete from category_ where id= #{id}
+	</delete>
+
+	<select id="get" parameterType="_int" resultType="Category">
+		select * from category_ where id= #{id}
+	</select>
+
+	<select id="getMore" parameterType="map" resultType="Category">
+		select * from category_
+		<where>
+			<if test='id!=null and id!=""'>
+				and id=#{id}
+			</if>
+			<if test='name!=null and name!=""'>
+				and name=#{name}
+			</if>
+		</where>
+	</select>
+
+	<update id="update" parameterType="Category">
+		update category_ set name=#{name} where id=#{id}
+	</update>
+	<select id="list" resultType="Category">
+		select * from category_
+	</select>
+</mapper>
